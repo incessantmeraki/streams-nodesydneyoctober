@@ -1,0 +1,27 @@
+{
+  "name": "streams-nodesydneyoctober",
+  "version": "1.0.0",
+  "description": "- JavaScript runtime built on Chrome's V8 JavaScript engine. ---",
+  "main": "index.js",
+  "scripts": {
+    "start": "mdx-deck deck.mdx",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/incessantmeraki/streams-nodesydneyoctober.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/incessantmeraki/streams-nodesydneyoctober/issues"
+  },
+  "homepage": "https://github.com/incessantmeraki/streams-nodesydneyoctober#readme",
+  "devDependencies": {
+    "mdx-deck": "^1.7.7"
+  },
+  "dependencies": {
+    "react-syntax-highlighter": "^8.0.1"
+  }
+}
