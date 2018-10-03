@@ -18,32 +18,17 @@ export default {
     code: '',
     codeBackground:'',
   },
-  //root css object
-  // css: {
-  // },
-  //css for other elements
-  heading: {
+  css: {
+    h1: {
+      textTransform: 'uppercase'
+    },
+    h2: {
+      color: 'white',
+    },
+    li: {
+      marginBottom:'15px'
+    }
   },
-  h1: {
-    marginTop: '-200px',
-    textTransform: 'uppercase',
-    fontSize: '150px'
-  },
-  h2: {
-    color: 'white'
-  },
-  // h3: {},
-  // h4: {},
-  // h5: {},
-  // h6: {},
-  // paragraph: {},
-  // link: {},
-  // ul: {},
-  // ol: {},
-  // li: {},
-  // img: {},
-  // blockquote: {},
-  // table: {}, 
   prism: {
     style: okaidia
   }

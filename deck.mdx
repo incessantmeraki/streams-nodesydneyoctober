@@ -5,10 +5,8 @@ import {Box} from 'grid-styled'
 
 
 # Stream in node.js 
-<br/>
-<br/>
 
-##  Node Sydney October 2018 
+Node Sydney October 2018 
 
 ---
 
@@ -30,50 +28,71 @@ import {Box} from 'grid-styled'
 
 I/O interface
 
-Helps write program that talks to 
+---
+# What does that mean ?
 
-- Network
-- File System
-- other I/O
+Helps write program in JavaScript that talks to 
+
+<ul>
+  <Appear>
+    <li> Network </li>
+    <li> File System </li>
+    <li> other I/O </li>
+  </Appear>
+</ul>
 
 ---
 
-## I/O based sources
+export default Split
 
 ![](server-diagram.png)
 
-- Databases
-- APIs
-- HTTP/WebSocket connections
-- Files 
+# I/O sources
+
+<ul>
+  <Appear>
+    <li> Databases (MySQL, Redis, CouchDB...) </li>
+    <li> APIs (Facebook, Twitter, Youtube ...) </li>
+    <li> HTTP/WebSocket connections </li>
+    <li> Files </li> 
+  </Appear>
+</ul>
+
+---
+# Comon thing for all I/O ?
+
+<Appear>
+  <h2 style={{color: 'red'}}> Data </h2>
+</Appear>
 
 ---
 
-## So, it is mainly about DATA 
+# 🤔
 
-🤨
-
----
-
-## Then, there must be some good way to handle data 
-
-🤔
+<Appear>
+  <h2> If it is all about data, then   </h2>
+  <h2> There must be some good way to handle data  </h2>
+</Appear>
 
 ---
 
-## That is where 👉	Stream 👈	 comes into the picture
+## This is where 👉	Stream 👈	 comes into the picture
 
 ---
 
-## Stream is a handy abstraction that's there in node.js to play with data
+# What is Stream ?
+
+## Stream is a handy abstraction that's there in node.js to manipulate data
 
 ---
 
-## Is it something 🆕 ? 
-🙅
+# Is Stream a new concept ? 
+<Appear>
+  <h2> No it isn't </h2>
+</Appear>
 
 ---
-##  Been there since the days of UNIX in form of |(pipe)
+##  Been there since the days of UNIX in form of pipe
 
 <br/> 
 
@@ -83,10 +102,16 @@ Helps write program that talks to
 
 ---
 
-## Why Streams ?
+# Why Streams ?
 
-- Handling large amount of data in limited resource
-- Compose decoupled applications using generic abstraction
+<ul>
+  <Appear>
+    <li><h2>Handling large amount of data in limited resource </h2> </li>
+    <li><h2>Compose decoupled applications using generic abstraction</h2> </li>
+  </Appear>
+</ul>
+
+
 
 ---
 
