@@ -1,9 +1,14 @@
-import { Appear, Image } from 'mdx-deck'
+export {default as theme} from './theme'
+import { Head, Appear, Image } from 'mdx-deck'
 import { Split } from 'mdx-deck/layouts'
+import {Box} from 'grid-styled' 
 
-# Stream in node.js
 
-Node Sydney October 2018
+# Stream in node.js 
+<br/>
+<br/>
+
+##  Node Sydney October 2018 
 
 ---
 
@@ -197,3 +202,14 @@ used to connect different streams
 ## pumpify
 
 ---
+
+Code example
+
+```js
+var through2 = require('through2')
+
+var transformer = through2(function (chunk, enc, next) {
+  next(chunk.toUpperCase())
+})
+
+```
