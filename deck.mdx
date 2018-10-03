@@ -1,58 +1,199 @@
-export { dark as theme } from 'mdx-deck/themes'
 import { Appear, Image } from 'mdx-deck'
+import { Split } from 'mdx-deck/layouts'
 
-# Stream in Node.js
+# Stream in node.js
 
----
-
-# Who am i ?
-
-<br/>
-<br/>
-
-### Ashwin Kandel (@incessantmeraki)
+Node Sydney October 2018
 
 ---
 
-# What do i do ?
+# who am i ?
 
-<ul>
-  <Appear>
-     <li> Work as Application Developer at Quantium </li>
-     <br/>
-     <li> I write JavaScript (React, Node.js) and use AWS</li> 
-  </Appear>
-</ul>
+- Ashwin Kandel (@incessantmeraki)
+- Works at Quantium
+- Works with Node.js, React, & AWS
 
 ---
 
 # What is node.js ?
 
-<br/>
-<br/>
-
-### JavaScript runtime built on Chrome's V8 JavaScript engine.
-
----
-# What actually is nodejs ?
-
-<br/>
-<br/>
-
-### I/O interface
+ Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
 
 ---
 
-# What does that mean ? 
+# What actually is node.js ?
 
-<br/>
-<br/>
+I/O interface
 
-### It allows user to write JavaScript programs that talks to networks, file system or other Input Output sources
+Helps write program that talks to 
+
+- Network
+- File System
+- other I/O
 
 ---
 
-<div style={{backgroundColor: 'white'}}>
-  <Image src="server-diagram.png" />
-</div>
+## I/O based sources
 
+![](server-diagram.png)
+
+- Databases
+- APIs
+- HTTP/WebSocket connections
+- Files 
+
+---
+
+## So, it is mainly about DATA 
+
+🤨
+
+---
+
+## Then, there must be some good way to handle data 
+
+🤔
+
+---
+
+## That is where 👉	Stream 👈	 comes into the picture
+
+---
+
+## Stream is a handy abstraction that's there in node.js to play with data
+
+---
+
+## Is it something 🆕 ? 
+🙅
+
+---
+##  Been there since the days of UNIX in form of |(pipe)
+
+<br/> 
+
+```sh
+  $ cat file | wc -c
+```
+
+---
+
+## Why Streams ?
+
+- Handling large amount of data in limited resource
+- Compose decoupled applications using generic abstraction
+
+---
+
+# Demo 1: Handling large amount of data
+
+---
+
+## Types of Stream
+
+- Readable : produces data  
+- Writable : consumes data
+- Transform : consumes data , modifies it, and produces the modified thing
+- Duplex : produces and consumes data separately. Similar to telephone
+
+---
+
+## Pipe
+
+used to connect different streams
+
+- Readable: readable.pipe(X)
+- Writeable: X.pipe(writeable)
+- Transform: X.pipe(transform).pipe(Y)
+- Duplex: X.pipe(duplex).pipe(X)
+
+---
+
+## Common Readable Stream Methods
+
+- stream.on('readable', callback)
+- stream.on('end' ,callback)
+- stream.on('data', callback)
+- stream.read()
+- stream.pipe(writeableStream)
+- stream.pipe(x)
+
+
+---
+
+## Flow mode v/s Pull mode
+
+- Two types of mode readable stream operates 
+- Difference ? Backpressure
+   If receiving end can't handle the pace of sender, data clogs up
+- Default : pull based mode 
+- Use stream.resume() or stream.on('data, callback) to enable flow mode
+- Suggestion: use .pipe() 
+
+---
+
+## Common Writeable Stream Methods
+
+- stream.write(data)
+- stream.on('finish', callback)
+- stream.end(), stream.end(data)
+- x.pipe(stream)
+
+---
+
+## Demo 2 : Exploring common methods available
+
+---
+
+## Core built-in streams
+
+![](built-in.png)
+
+---
+
+## Examples:
+
+
+## HTTP 
+
+---
+
+## Zlib
+
+---
+
+## Crypto
+
+---
+
+## TCP
+
+---
+
+## Split
+
+---
+
+## Creating streams
+
+---
+
+## to2
+
+---
+
+## from2
+
+---
+
+## through2
+
+---
+
+## duplexify 
+
+---
+
+## pumpify
+
+---
