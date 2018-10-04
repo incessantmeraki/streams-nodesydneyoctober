@@ -275,10 +275,6 @@ var fs = require('fs')
 
 fs.createReadStream('file')
   .pipe(split())
-
-
-fs.createReadStream('file')
-  .pipe(split())
   .pipe(process.stdout)
 
 ```
