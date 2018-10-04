@@ -1,5 +1,5 @@
 export {default as theme} from './theme'
-import { Head, Appear, Image } from 'mdx-deck'
+import { Head, Appear, Image, Code } from 'mdx-deck'
 import { Split } from 'mdx-deck/layouts'
 import {Box} from 'grid-styled' 
 
@@ -115,11 +115,16 @@ export default Split
 
 ---
 
-# Demo 1: Handling large amount of data
+# Example:  Handling large amount of data
+
+- Serve a large file over HTTP server
+- w/o Stream
+- with Stream
+- See the difference
 
 ---
 
-## Types of Stream
+# Types of Stream
 
 - Readable : produces data  
 - Writable : consumes data
@@ -128,113 +133,232 @@ export default Split
 
 ---
 
-## Pipe
+# Pipe
 
-used to connect different streams
-
-- Readable: readable.pipe(X)
-- Writeable: X.pipe(writeable)
-- Transform: X.pipe(transform).pipe(Y)
-- Duplex: X.pipe(duplex).pipe(X)
-
----
-
-## Common Readable Stream Methods
-
-- stream.on('readable', callback)
-- stream.on('end' ,callback)
-- stream.on('data', callback)
-- stream.read()
-- stream.pipe(writeableStream)
-- stream.pipe(x)
-
+## used to connect different streams 
+- Readable: ``` readable.pipe(X) ```
+- Writeable: ``` X.pipe(writeable) ```
+- Transform: ``` X.pipe(transform).pipe(Y) ```
+- Duplex: ``` X.pipe(duplex).pipe(X) ```
 
 ---
 
-## Flow mode v/s Pull mode
+# Readable Stream Methods
 
-- Two types of mode readable stream operates 
-- Difference ? Backpressure
-   If receiving end can't handle the pace of sender, data clogs up
-- Default : pull based mode 
-- Use stream.resume() or stream.on('data, callback) to enable flow mode
-- Suggestion: use .pipe() 
+- ``` stream.on('readable', callback) ```
+- ``` stream.on('end' ,callback) ```
+- ``` stream.on('data', callback) ```
+- ``` stream.read() ```
+- ``` stream.pipe(writeableStream) ```
+
 
 ---
 
-## Common Writeable Stream Methods
+# Flow mode v/s Pull mode
 
-- stream.write(data)
-- stream.on('finish', callback)
-- stream.end(), stream.end(data)
-- x.pipe(stream)
-
----
-
-## Demo 2 : Exploring common methods available
-
----
-
-## Core built-in streams
-
-![](built-in.png)
+<ul>
+  <Appear>
+    <li> Two types of mode readable stream operates </li>
+    <li> Difference ? Backpressure </li>
+       <ul> <li>If receiving end can't handle the pace of sender, data clogs up </li> </ul>
+    <li> Default : pull based mode </li>
+    <li> Use stream.resume() or stream.on('data, callback) to enable flow mode </li>
+    <li> Suggestion: use .pipe() </li>
+  </Appear>
+</ul>
 
 ---
 
-## Examples:
+# Writeable Stream Methods
 
-
-## HTTP 
-
----
-
-## Zlib
+- ``` stream.write(data) ```
+- ``` stream.on('finish', callback) ```
+- ``` stream.end(), stream.end(data) ```
+- ``` x.pipe(stream) ```
 
 ---
 
-## Crypto
+# Example: Exploring common methods available
+
+- Create Readable and Writeable Stream to files
+- Use methods shown below to read and write data 
+
+---
+
+# Built-in streams
+
+- ## process
+- ## http
+- ## zlib
+- ## crypto
+
+---
+
+# Examples:
+
+---
+
+## process
+
+```js
+  process.stdin //readable stream
+  process.stdout //writeable stream
+```
+
+---
+
+## http 
+
+```js
+http.createServer(function(req,res) {...})
+// req = readable stream and res = writeable stream
+
+http.request(opts, function(res){...})
+//res = readable stream
+
+```
+---
+
+## zlib
+
+```js
+  var zlib = require('zlib')
+
+  zlib.createGzip(opts) // transform stream to compress with gzip
+  zlib.createGunzip(opts) // transform stream to uncompress with gzip
+  zlib.createDeflate(opts) // transform stream to compress with deflate
+  zlib.createDeflateRaw(opts) // transform stream to compress with raw deflate
+  zlib.createInflate(opts) // transform stream to uncompress with deflate
+  zlib.createInflateRaw(opts) // transform stream to uncompress with raw deflate
+  zlib.createUnzip(opts) // transform stream to uncompress gzip and deflate
+```
+
+---
+
+## crypto
+
+```js
+  var crypto = require('crypto')
+
+  crypto.createCipher(algo, password) // transform stream to encrypt
+  crypto.createDecipher(algo, password) // transform stream to decrypt
+  crypto.createCipheriv(algo, key, iv) // transform stream to encrypt with iv
+  crypto.createDecipheriv(algo, key, iv) // transform stream to decrypt with
+   iv
+  crypto.createHash(algo) // transform stream to output cryptographic hash
+  crypto.createHMAC(algo, key) // transform stream to output HMAC digest
+  crypto.createSign(algo) // writable stream to sign messages
+  crypto.createVerify(algo) // writable stream to verify signatures
+```
 
 ---
 
 ## TCP
 
+```js
+  //Server
+  var net = require('net')
+  var server = net.createServer(function(stream){})
+  server.listen(5000)
+
+  //Client
+  net.connect(5000, localhost)
+```
+
 ---
 
 ## Split
 
+```js
+var split = require('split2')
+var fs = require('fs')
+
+fs.createReadStream('file')
+  .pipe(split())
+
+
+fs.createReadStream('file')
+  .pipe(split())
+  .pipe(process.stdout)
+
+```
+
 ---
 
-## Creating streams
+# Creating streams
 
----
-
-## to2
+## Use user-land modules to create streams
 
 ---
 
 ## from2
 
+```js
+  var from = require('from2')
+  
+  var rStream = from(function(size, next) {})
+```
+
+---
+## to2
+
+```js
+  var to =  require('to2')
+
+  var wStream = to2(function(buffer, next) {})
+```
 ---
 
 ## through2
 
+```js
+
+var through = require('through2')
+
+var tStream = through(function (buff, enc, next) {...})
+```
+
 ---
 
-## duplexify 
-
----
-
-## pumpify
-
----
-
-Code example
+## duplexify
 
 ```js
-var through2 = require('through2')
 
-var transformer = through2(function (chunk, enc, next) {
-  next(chunk.toUpperCase())
+var duplexify = require('duplexify')
+
+// turn writableStream and readableStream into a single duplex stream
+var dup = duplexify(writableStream, readableStream)
+
+dup.write('hello world') // will write to writableStream
+dup.on('data', function(data) {
+  // will read from readableStream
 })
 
 ```
+
+---
+
+# Miscellaneous Modules
+
+## collect-stream
+## end-of-stream
+## pumpify
+## websocket-stream 
+
+---
+
+## Stream abstraction works on the browser too, **use browserify** 
+
+---
+
+# Futher information....
+
+- Try nodeschool workshop **stream-adventure**
+- Read **stream-handbook** by @substack
+- Follow works of awesome people like @mafintosh, @substack, @yoshuawuyts...
+
+---
+
+# The END
+
+## Question time...
